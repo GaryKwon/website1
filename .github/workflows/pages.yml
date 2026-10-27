@@ -1,0 +1,43 @@
+name: Publish LUCKY PACK
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: lucky-pack-pages
+  cancel-in-progress: false
+
+jobs:
+  website:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.publish.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/configure-pages@v6
+      - name: Locate website
+        id: site
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -f dist/index.html ]]; then
+            echo "path=dist" >> "$GITHUB_OUTPUT"
+          elif [[ -f lucky-pack/dist/index.html ]]; then
+            echo "path=lucky-pack/dist" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::Cannot find dist/index.html or lucky-pack/dist/index.html"
+            exit 1
+          fi
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: ${{ steps.site.outputs.path }}
+      - id: publish
+        uses: actions/deploy-pages@v5
