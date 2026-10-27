@@ -23,8 +23,11 @@ npm start
 
 - `lucky-pack/dist/`: 웹사이트의 HTML, CSS, JavaScript
 - `index.html`: 저장소 루트의 GitHub Pages 진입 화면
-- `.nojekyll`: 정적 파일 그대로 배포
+- `.nojekyll`: 브랜치 배포로 되돌릴 때 사용하는 정적 배포 설정
+- `.github/workflows/pages.yml`: GitHub Pages 자동 배포
 
 루트 화면은 `lucky-pack/dist/`의 CSS와 JavaScript를 불러옵니다.
 화면 구조를 변경하면 `lucky-pack/dist/index.html`과 루트 `index.html`에 함께 반영합니다.
-GitHub Pages는 `main` 브랜치의 루트(`/`)를 게시합니다.
+GitHub Pages의 Source는 **GitHub Actions**입니다.
+`main` 브랜치에 변경 내용을 올리면 워크플로가 `lucky-pack/dist/`를 사이트 루트로 배포합니다.
+배포는 Node.js 24를 사용하는 액션과 Ubuntu 24.04 실행 환경을 사용합니다.
