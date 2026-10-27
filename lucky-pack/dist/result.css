@@ -1,0 +1,21 @@
+/* One fortune card. No statistics, dates, or collection UI. */
+.fortune-result{--result-card-width:min(300px,76vw,calc(62dvh * .665));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;width:100%;max-width:none;grid-template-columns:none}
+.fortune-card{width:var(--result-card-width);aspect-ratio:.665}
+.card-inner{padding:calc(var(--result-card-width) * .07);justify-content:center;align-items:center}
+.card-art{height:calc(var(--result-card-width) * .43);width:100%;flex:0 0 auto;margin:0 0 calc(var(--result-card-width) * .05)}
+.card-art>svg{width:calc(var(--result-card-width) * .42);height:calc(var(--result-card-width) * .42)}
+.card-title{font-size:clamp(15px,calc(var(--result-card-width) * .078),23px);font-weight:700;line-height:1.45;letter-spacing:-.7px;text-align:center;word-break:keep-all;margin:0}
+.card-message{font-size:clamp(10px,calc(var(--result-card-width) * .046),14px);line-height:1.85;letter-spacing:-.25px;text-align:center;word-break:keep-all;color:#66506f;margin:calc(var(--result-card-width) * .045) 0 0}
+.fortune-result>.result-actions{display:flex;flex-wrap:nowrap;justify-content:center;gap:10px}
+.fortune-result>.result-actions button{min-width:82px;padding:12px 20px;font-size:11px}
+@media(max-height:480px){.fortune-result{gap:16px}.fortune-result>.result-actions button{padding:9px 16px;font-size:10px;min-width:72px}}
+@media(max-height:360px){
+  .fortune-result{gap:12px}
+  .card-art{height:calc(var(--result-card-width) * .23);margin-bottom:calc(var(--result-card-width) * .03)}
+  .card-art>svg{width:calc(var(--result-card-width) * .23);height:calc(var(--result-card-width) * .23)}
+  .card-art:before{width:calc(var(--result-card-width) * .43);height:calc(var(--result-card-width) * .17)}
+  .card-art:after{width:calc(var(--result-card-width) * .27);height:calc(var(--result-card-width) * .27)}
+  .card-title{font-size:13px;line-height:1.35}
+  .card-message{font-size:9px;line-height:1.65;margin-top:7px}
+}
+@media(max-height:300px){.card-art{display:none}}

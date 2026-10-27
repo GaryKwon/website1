@@ -1,0 +1,43 @@
+/* Tactile controls; motion is reserved for devices that can actually hover. */
+.wordmark{transition:color .25s ease,filter .25s ease,opacity .15s ease}
+.wordmark>svg{transform-origin:center;transition:transform .6s cubic-bezier(.2,.8,.2,1),color .25s ease}
+.primary-button,.secondary-button,.icon-button,.text-button,.again-button,.collection-item{transition:transform .25s cubic-bezier(.2,.8,.2,1),background-color .25s ease,border-color .25s ease,color .25s ease,box-shadow .25s ease}
+.primary-button{position:relative;isolation:isolate;overflow:hidden}
+.primary-button:after{content:'';position:absolute;inset:-60% -80%;z-index:-1;background:linear-gradient(110deg,transparent 35%,#ffffff24 48%,transparent 61%);transform:translateX(-65%);transition:transform .65s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.primary-button>span{transition:transform .3s ease}
+.icon-button>svg,.text-button>svg,.again-button>svg{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.collection-item>svg{transition:transform .4s cubic-bezier(.2,.8,.2,1),color .25s ease}
+.wordmark:focus-visible{color:#775397;filter:drop-shadow(0 3px 9px #9875b423)}
+.primary-button:focus-visible:not(:disabled){background-color:#554063;box-shadow:0 7px 20px #59416f24}
+.secondary-button:focus-visible:not(:disabled),.icon-button:focus-visible:not(:disabled){background-color:#ede4f4;border-color:#a88cbb;color:#5b3d70}
+.text-button:focus-visible:not(:disabled),.again-button:focus-visible:not(:disabled){color:#634177;border-color:#88649e}
+.collection-item:focus-visible:not(:disabled){border-color:#b49bc8;box-shadow:0 10px 24px #77578e1d}
+
+@media(hover:hover) and (pointer:fine){
+  .wordmark:hover{color:#775397;filter:drop-shadow(0 3px 9px #9875b423)}
+  .wordmark:hover>svg,.wordmark:focus-visible>svg{transform:rotate(90deg);color:#aa87c3}
+  .primary-button:hover:not(:disabled){background-color:#554063;transform:translateY(-3px);box-shadow:0 9px 22px #59416f30}
+  .primary-button:hover:not(:disabled):after{transform:translateX(65%)}
+  .primary-button:hover:not(:disabled)>span{transform:rotate(90deg)}
+  .secondary-button:hover:not(:disabled){background-color:#ede4f4;border-color:#a88cbb;color:#5b3d70;transform:translateY(-3px);box-shadow:0 7px 18px #77578e15}
+  .icon-button:hover:not(:disabled){background-color:#e9ddf2;border-color:#ad91bf;color:#654479;transform:translateY(-2px);box-shadow:0 5px 14px #77578e20}
+  .icon-button:hover:not(:disabled)>svg{transform:rotate(90deg)}
+  .text-button:hover:not(:disabled){color:#634177;border-color:#88649e;transform:translateY(-2px)}
+  .text-button:hover:not(:disabled)>svg{transform:translateX(5px)}
+  .again-button:hover:not(:disabled){color:#634177;transform:translateX(-2px)}
+  .again-button:hover:not(:disabled)>svg{transform:translateX(-4px) rotate(180deg)}
+  .collection-item:hover:not(:disabled){transform:translateY(-6px);border-color:#b49bc8;box-shadow:0 15px 28px #77578e26}
+  .collection-item:hover:not(:disabled)>svg{transform:rotate(-12deg) scale(1.08);color:#76518f}
+}
+
+/* Touch gets a brief press response without keeping hover styles stuck on. */
+.wordmark:active{opacity:.75}
+.primary-button:active:not(:disabled),.secondary-button:active:not(:disabled),.icon-button:active:not(:disabled),.text-button:active:not(:disabled),.again-button:active:not(:disabled),.collection-item:active:not(:disabled){transform:translateY(1px) scale(.98);box-shadow:none}
+@media(hover:none),(pointer:coarse){.collection-item:hover{transform:none}}
+
+@media(prefers-reduced-motion:reduce){
+  .wordmark,.wordmark>svg,.primary-button,.primary-button:after,.primary-button>span,.secondary-button,.icon-button,.icon-button>svg,.text-button,.text-button>svg,.again-button,.again-button>svg,.collection-item,.collection-item>svg{transition:none}
+  .wordmark:hover>svg,.wordmark:focus-visible>svg,.primary-button:hover:not(:disabled),.primary-button:active:not(:disabled),.primary-button:hover:not(:disabled)>span,.secondary-button:hover:not(:disabled),.secondary-button:active:not(:disabled),.icon-button:hover:not(:disabled),.icon-button:active:not(:disabled),.icon-button:hover:not(:disabled)>svg,.text-button:hover:not(:disabled),.text-button:active:not(:disabled),.text-button:hover:not(:disabled)>svg,.again-button:hover:not(:disabled),.again-button:active:not(:disabled),.collection-item:hover:not(:disabled),.collection-item:active:not(:disabled),.collection-item:hover:not(:disabled)>svg{transform:none}
+  .again-button:hover:not(:disabled)>svg{transform:rotate(180deg)}
+  .primary-button:after{display:none}
+}

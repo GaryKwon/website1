@@ -1,0 +1,62 @@
+/* Reflections follow the pointer; the page still rests quietly between gestures. */
+.intro{position:relative;isolation:isolate}
+.intro:before{content:'';position:absolute;inset:-15px -30px;z-index:-1;pointer-events:none;background:radial-gradient(220px circle at var(--hover-x,50%) var(--hover-y,50%),#d8c8ed47,transparent 76%);opacity:0;transition:opacity .4s ease}
+.period{display:inline-block;transition:color .3s ease,text-shadow .3s ease,transform .35s ease}
+.pack-stage:before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(230px circle at var(--hover-x,50%) var(--hover-y,50%),#cdb5e947,transparent 75%);opacity:0;transition:opacity .4s ease}
+.pack-choice{transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s ease,filter .35s ease;perspective:900px}
+.pack-choice .pack{transform:rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:transform .22s ease-out,filter .35s ease}
+.pack:after{content:'';position:absolute;inset:0;z-index:5;border-radius:inherit;pointer-events:none;background:radial-gradient(ellipse at var(--hover-x,50%) var(--hover-y,50%),#fff9,transparent 64%);mix-blend-mode:soft-light;opacity:0;transition:opacity .35s ease}
+.pack-choice .pack-foil{background-position:0 0,var(--hover-x,40%) var(--hover-y,50%);transition:background-position .22s ease-out}
+.pack-art>svg,.orbit,.pack-spark{transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .35s ease,color .3s ease}
+.pack-number{transition:opacity .3s ease,transform .3s ease,color .3s ease}
+.fortune-card{transform:perspective(900px) rotate(-4deg) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg));transition:transform .3s ease-out,box-shadow .35s ease}
+.fortune-card:after{inset:0;animation:none;transform:none;background:radial-gradient(circle at var(--hover-x,50%) var(--hover-y,50%),#ffffffb3,transparent 64%);mix-blend-mode:soft-light;opacity:0;transition:opacity .35s ease}
+.card-art>svg{transition:transform .45s cubic-bezier(.2,.8,.2,1),color .3s ease}
+.ritual-step{position:relative;isolation:isolate;transition:transform .3s ease}
+.ritual-step:before{content:'';position:absolute;inset:-12px -15px;z-index:-1;border-radius:12px;background:#ebe4f373;opacity:0;transition:opacity .3s ease}
+.ritual-step>span,.ritual-step p,.ritual-step small{transition:color .3s ease,transform .3s ease}
+.hover-note svg,.edition-tag .holo-dot,.series span,footer svg{transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .3s ease,color .3s ease}
+.tear-strip:before{transition:filter .25s ease,border-color .25s ease}
+
+@media(hover:hover) and (pointer:fine){
+  .intro:hover:before,.pack-stage:hover:before{opacity:1}
+  .intro:hover .period{color:#9773bd;text-shadow:0 0 19px #ba9bd978;transform:translateY(-2px)}
+  .pack-choice:hover,.pack-choice:focus-visible{transform:translateY(-20px) rotate(0deg) scale(1.055);z-index:2}
+  .pack-choice:hover .pack-foil,.pack-choice:focus-visible .pack-foil{background-position:0 0,var(--hover-x,50%) var(--hover-y,50%)}
+  .pack-choice:hover .pack{filter:drop-shadow(3px 16px 9px #58456940)}
+  .pack-choice:hover .pack:after,.pack-choice:focus-visible .pack:after{opacity:1}
+  .pack-stage:has(.pack-choice:hover) .pack-choice:not(:hover):not(:focus-visible){opacity:.63;filter:saturate(.82)}
+  .pack-choice:hover .pack-art>svg{transform:rotate(-4deg) scale(1.12)}
+  .pack-choice:hover .orbit{transform:rotate(-18deg)}
+  .pack-choice:hover .pack-spark{transform:rotate(90deg) scale(1.18)}
+  .pack-choice:hover .pack-number{color:#76518e;transform:translateY(3px)}
+  .fortune-card:hover{box-shadow:0 30px 55px #63447b37,inset 0 0 0 1px #ffffffc9}
+  .fortune-card:hover:after{opacity:1}
+  .fortune-card:hover .card-art>svg{transform:scale(1.09) rotate(7deg);color:#8966aa}
+  .ritual-step:hover{transform:translateY(-3px)}
+  .ritual-step:hover:before{opacity:1}
+  .ritual-step:hover>span{color:#9474af;transform:translateY(-2px)}
+  .ritual-step:hover p{color:#67447f}
+  .ritual-step:hover small{color:#8b759d}
+  .stage-topline:hover .hover-note svg{transform:rotate(35deg) translateX(4px)}
+  .edition-tag:hover .holo-dot{transform:rotate(180deg) scale(1.25);filter:drop-shadow(0 0 4px #c6acd9)}
+  .series:hover span,footer:hover svg{transform:rotate(90deg);color:#8b6da4}
+  .tear-strip:hover:before,.tear-strip:focus-visible:before{border-color:#fff;filter:drop-shadow(0 0 4px #fff) drop-shadow(0 0 10px #b483dc)}
+}
+.pack-choice:active{transform:translateY(-5px) rotate(0deg) scale(.98)}
+@media(hover:none),(pointer:coarse){
+  .pack-choice:hover{transform:translateY(var(--y)) rotate(var(--r))}
+  .pack-choice:hover .pack-foil{background-position:0 0,40% 50%}
+  .pack-choice:hover .pack-number{transform:translateY(-5px)}
+  .pack-choice:active{transform:translateY(-3px) rotate(0deg) scale(.98)}
+}
+@media(prefers-reduced-motion:reduce){
+  .intro:before,.pack-stage:before{display:none}
+  .pack-choice .pack{transform:none}
+  .pack-choice:hover,.pack-choice:focus-visible{transform:translateY(var(--y)) rotate(var(--r))}
+  .pack-choice:hover .pack-art>svg{transform:rotate(-12deg)}
+  .pack-choice:hover .orbit{transform:rotate(-30deg)}
+  .pack-choice:hover .pack-spark,.pack-choice:hover .pack-number,.intro:hover .period,.ritual-step:hover,.ritual-step:hover>span,.fortune-card:hover .card-art>svg,.edition-tag:hover .holo-dot,.series:hover span,footer:hover svg{transform:none}
+  .fortune-card{transform:rotate(-4deg)}
+  .stage-topline:hover .hover-note svg{transform:rotate(35deg)}
+}

@@ -1,0 +1,14 @@
+{
+  "name": "lucky-pack",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Holographic fortune packs with 120 randomized fortunes.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node scripts/serve.mjs",
+    "check": "node --check dist/app.js && node --check dist/hover.js && node --check dist/draw.js && node --check dist/fortunes.js"
+  }
+}
